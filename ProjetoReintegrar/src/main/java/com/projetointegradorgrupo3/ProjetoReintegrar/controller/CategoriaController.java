@@ -43,19 +43,11 @@ public class CategoriaController {
 	public ResponseEntity<List <Categoria>>findBySetor(@PathVariable String setor){
 		return ResponseEntity.ok(repository.findAllBySetorContainingIgnoreCase(setor));
 	}
-	@GetMapping("/area/{area}")
-	public ResponseEntity<List <Categoria>>findByArea(@PathVariable String area){
-		return ResponseEntity.ok(repository.findAllByAreaContainingIgnoreCase(area));
 	
-	}
 	@GetMapping("/cargo/{cargo}")
 	public ResponseEntity<List <Categoria>>findByCargo(@PathVariable String cargo){
 		return ResponseEntity.ok(repository.findAllByCargoContainingIgnoreCase(cargo));
 	
-	}
-	@GetMapping("/periodo/{periodo}")
-	public ResponseEntity<List <Categoria>>findByPeriodo(@PathVariable String periodo){
-		return ResponseEntity.ok(repository.findAllByPeriodoContainingIgnoreCase(periodo));
 	}
 	
 	@PostMapping
@@ -71,11 +63,6 @@ public class CategoriaController {
 	public void delete(@PathVariable long id) {
 		repository.deleteById(id);
 	}
-	
-	
-	
-	
-	
 	
 	
 }

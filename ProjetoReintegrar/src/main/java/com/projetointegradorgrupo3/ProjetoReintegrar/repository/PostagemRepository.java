@@ -1,5 +1,6 @@
 package com.projetointegradorgrupo3.ProjetoReintegrar.repository;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,6 +14,6 @@ public interface PostagemRepository extends JpaRepository<Postagem,Long> {
 		
 		public List<Postagem> findAllByTituloContainingIgnoreCase(String titulo);
 		public List<Postagem> findAllByCorpoContainingIgnoreCase(String corpo);
-		public List<Postagem> findAllByDataContainingIgnoreCase(String data);
+		public List<Postagem> findAllByData(Date data);
 		
 }

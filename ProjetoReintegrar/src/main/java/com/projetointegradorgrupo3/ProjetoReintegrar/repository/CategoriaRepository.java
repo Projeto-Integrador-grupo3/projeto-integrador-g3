@@ -10,9 +10,8 @@ import com.projetointegradorgrupo3.ProjetoReintegrar.model.Categoria;
 @Repository
 
 public interface CategoriaRepository extends JpaRepository<Categoria,Long> {
-	public List<Categoria> findAllByAreaContainingIgnoreCase(String area);
 	public List<Categoria> findAllBySetorContainingIgnoreCase(String setor);
 	public List<Categoria> findAllByCargoContainingIgnoreCase(String cargo);
-	public List<Categoria> findAllByPeriodoContainingIgnoreCase(String periodo);
+	
 
 }

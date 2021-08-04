@@ -1,17 +1,21 @@
 package com.projetointegradorgrupo3.ProjetoReintegrar.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -45,13 +49,45 @@ public class Usuario {
 	@NotBlank
 	@Size (min = 6, max = 28)
 	private String senha;
+	
+	@NotBlank
+	@Size (min=5,max=100)
+	private String periodo;
+	
+	@Min (0)
+	private double pretensaoSalarial;
 
+	
+	@ManyToOne
+	@JsonIgnoreProperties ("usuarios")
+	private Categoria categoria;
+	
+	@OneToMany (mappedBy = "usuario", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties ("usuario")
+	private List<Postagem> postagens;
+	
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	public List<Postagem> getPostagens() {
+		return postagens;
+	}
+
+	public void setPostagens(List<Postagem> postagens) {
+		this.postagens = postagens;
 	}
 
 	public String getNome() {
@@ -101,5 +137,22 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+
+	public String getPeriodo() {
+		return periodo;
+	}
+
+	public void setPeriodo(String periodo) {
+		this.periodo = periodo;
+	}
+
+	public double getPretensaoSalarial() {
+		return pretensaoSalarial;
+	}
+
+	public void setPretensaoSalarial(double pretensaoSalarial) {
+		this.pretensaoSalarial = pretensaoSalarial;
+	}
+
 	
 }

@@ -1,5 +1,6 @@
 package com.projetointegradorgrupo3.ProjetoReintegrar.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,16 @@ public class PostagemController {
     @GetMapping("/titulo/{titulo}")
     public ResponseEntity<List<Postagem>> GetByTitulo(@PathVariable String titulo){
         return ResponseEntity.ok(repository.findAllByTituloContainingIgnoreCase(titulo));
+    }
+    
+    @GetMapping("/data/{data}")
+    public ResponseEntity<List<Postagem>> GetByData(@PathVariable Date data){
+        return ResponseEntity.ok(repository.findAllByData(data));
+    }
+    
+    @GetMapping("/corpo/{corpo}")
+    public ResponseEntity<List<Postagem>> GetByCorpo(@PathVariable String corpo){
+        return ResponseEntity.ok(repository.findAllByCorpoContainingIgnoreCase(corpo));
     }
 
     @PostMapping
