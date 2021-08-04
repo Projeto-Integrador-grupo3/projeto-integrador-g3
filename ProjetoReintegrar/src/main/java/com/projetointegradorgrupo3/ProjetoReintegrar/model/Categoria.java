@@ -27,6 +27,7 @@ public class Categoria {
 	@NotNull
 	@Size (min=5,max=100)
 	private String periodo;
+	
 	public long getId() {
 		return id;
 	}
