@@ -50,7 +50,7 @@ public class Usuario {
 	private String telefone;
 	
 	@NotBlank
-	@Size (min = 6, max = 28)
+	@Size (min = 6)
 	private String senha;
 	
 	@NotBlank
