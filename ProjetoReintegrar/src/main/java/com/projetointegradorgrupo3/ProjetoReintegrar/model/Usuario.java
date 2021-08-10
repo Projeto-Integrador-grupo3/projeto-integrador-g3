@@ -1,8 +1,10 @@
 package com.projetointegradorgrupo3.ProjetoReintegrar.model;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,6 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
@@ -30,9 +33,9 @@ public class Usuario {
 	@Size (min = 3, max = 50)
 	private String nome;
 	
-	@NotNull
-	@Min (16)
-	private int idade;
+	@Column(name = "tb_nascimento")
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate dataNascimento ;
 	
 	@NotBlank
 	@Size (min = 5, max = 20)
@@ -66,6 +69,24 @@ public class Usuario {
 	@JsonIgnoreProperties ("usuario")
 	private List<Postagem> postagens;
 	
+	public Usuario (long id, String nome , LocalDate dataNascimento, String genero , String email
+			, String telefone , String senha , String periodo , double pretensaoSalarial) {
+		
+		this.id = id;
+		this.nome = nome;
+		this.dataNascimento = dataNascimento;
+		this.genero = genero;
+		this.email = email;
+		this.telefone = telefone;
+		this.senha = senha;
+		this.periodo = periodo;
+		this.pretensaoSalarial = pretensaoSalarial;
+	}
+	
+	public Usuario () {
+		
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -96,14 +117,6 @@ public class Usuario {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public int getIdade() {
-		return idade;
-	}
-
-	public void setIdade(int idade) {
-		this.idade = idade;
 	}
 
 	public String getGenero() {
@@ -154,5 +167,13 @@ public class Usuario {
 		this.pretensaoSalarial = pretensaoSalarial;
 	}
 
+	public LocalDate getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public void setDataNascimento(LocalDate dataNascimento) {
+		this.dataNascimento = dataNascimento;
+	}
+	
 	
 }
